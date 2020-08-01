@@ -1,0 +1,104 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{setspace}
+
+\onehalfspacing
+
+\title{Problem Set 11: Matrix Spaces; Rank 1; Small World Graphs}
+\author{Tiago C. Botelho}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Problem 11.1:} We can write $I_3$, the 3 by 3 identity matrix as:
+
+\[
+\begin{bmatrix}
+1 & 0 & 0\\
+0 & 0 & 1\\
+0 & 1 & 0\\
+\end{bmatrix}
++
+\begin{bmatrix}
+0 & 1 & 0\\
+1 & 0 & 0\\
+0 & 0 & 1\\
+\end{bmatrix}
+-
+\begin{bmatrix}
+0 & 1 & 0\\
+0 & 0 & 1\\
+1 & 0 & 0\\
+\end{bmatrix}
+-
+\begin{bmatrix}
+0 & 0 & 1\\
+1 & 0 & 0\\
+0 & 1 & 0\\
+\end{bmatrix}
++
+\begin{bmatrix}
+0 & 0 & 1\\
+0 & 1 & 0\\
+1 & 0 & 0\\
+\end{bmatrix}.
+\]
+
+Now, assume for the sake of contradiction that we can find nonzero constants $c_1, ..., c_5$ such that $\sum_{i=1}^{5}c_i P_i = \mathbf{0}$. Then:
+
+\[
+\begin{bmatrix}
+c_1 & c_2 + c_3 & c_4 + c_5\\
+c_2 + c_4 & c_5 & c_1 + c_3\\
+c_3 + c_5 & c_1 + c_4 & c_2\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & 0 & 0\\
+0 & 0 & 0\\
+0 & 0 & 0\\
+\end{bmatrix}.
+\]
+
+This, in turn, implies that $c_1 = c_5 = c_2 = 0$ (diagonal); which implies that $c_3 = 0$ (entry (3, 1)), and $c_4 = 0$ (entry (3, 2)), \textit{i.e.}, $c_i = 0$ for all $i \in \{1, ..., 5\}$, contrary to our choice of the $c_i$.
+
+\noindent \textbf{Problem 11.2:}
+
+\noindent \textbf{(a)} A quick mental procedure tells us that $\text{dim }\mathcal{N}(A) = 1$, so $[1 \ 1 \ 1]^{T}$ forms a basis for the nullspace of $A$. Therefore, for $AX$ to be equal to $\mathbf{0}$, we need the columns $X$ to be multiples of $[1 \ 1 \ 1]^{T}$.
+
+\noindent \textbf{(b)} First, note that:
+
+\[
+\begin{bmatrix}
+\phantom{-}1 & \phantom{-}0 & -1\\
+-1 & \phantom{-}1 & \phantom{-}0\\
+\phantom{-}0 & -1 & \phantom{-}1\\
+\end{bmatrix}
+\begin{bmatrix}
+a & b & c\\
+d & e & f\\
+g & h & i\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+a - g & b - h & c - i\\
+d - a & e - b & f - c\\
+g - d & h - e & i - f\\
+\end{bmatrix},
+\]
+
+so these matrices all have one important property: the elements along any of the columns add up to zero! So matrices of this type can be written as:
+
+\[
+\begin{bmatrix}
+a & b & c\\
+a' & b' & c'\\
+-(a + a') & -(b + b') & -(c + c')\\
+\end{bmatrix}.
+\]
+
+\noindent \textbf{(c)} The dimension of $\mathcal{N}(A)$ is 1, as we have already said before; and the dimension of $\mathcal{C}(A)$ is 2. The reason why they add up to $n$, the number of columns, is that we can use the pivot columns as a basis for $\mathcal{C}(A)$ and the remaining columns -- the free variable columns -- as a basis for $\mathcal{N}(A)$.
+\end{document}

@@ -1,0 +1,107 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{setspace}
+
+\onehalfspacing
+
+\title{Problem Set 9: Independence, Basis, and Dimension}
+\author{Tiago C. Botelho}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Problem 9.1:} Each of these vectors $\mathbf{v}_i$ is an element of $\mathbb{R}^{4}$, and since $\text{dim }\mathbb{R}^{4} = 4$, there are at most four independent vectors among the $\mathbf{v}_i$. Let's see how many of the vectors actually \textit{are} independent. First, note that:
+
+\begin{align*}
+\mathbf{v}_4 = \mathbf{v}_2 - \mathbf{v}_1\\
+\mathbf{v}_5 = \mathbf{v}_3 - \mathbf{v}_1\\
+\mathbf{v}_6 = \mathbf{v}_3 - \mathbf{v}_2
+\end{align*}
+
+Next step is to put the first three vectors as columns of a matrix and apply the elimination algorithm.
+
+\[
+A = \begin{bmatrix}
+\phantom{-}1 & \phantom{-}1 & \phantom{-}1\\
+-1 & \phantom{-}0 & \phantom{-}0\\
+\phantom{-}0 & -1 & \phantom{-}0\\
+\phantom{-}0 & \phantom{-}0 & -1
+\end{bmatrix}
+\]
+
+Reduced row echelon form is:
+
+\[
+R = \begin{bmatrix}
+1 & 0 & 1\\
+0 & 1 & 0\\
+0 & 0 & 1\\
+0 & 0 & 0\\
+\end{bmatrix},
+\]
+
+so indeed $\mathbf{v}_1, \mathbf{v}_2,$ and $\mathbf{v}_3$ are linearly independent. More than that, we've figured out that the rank of the matrix with all six $\mathbf{v}_i$ for columns is 3.
+
+\noindent \textbf{Problem 9.2:} A plane in $\mathbb{R}^{3}$ can be finitely spanned by two vectors. In particular, we can write for this plane:
+
+\[
+\begin{bmatrix}
+0\\
+0\\
+0\\
+\end{bmatrix}
+=
+x\begin{bmatrix}
+1\\
+0\\
+0\\
+\end{bmatrix}
++
+y\begin{bmatrix}
+2\\
+0\\
+0\\
+\end{bmatrix}
++
+z\begin{bmatrix}
+-3\\
+\phantom{-}0\\
+\phantom{-}0\\
+\end{bmatrix},
+\]
+
+and so the plane is the nullspace of the matrix
+
+\[
+\begin{bmatrix}
+1 & 2 & -3\\
+0 & 0 & \phantom{-}0\\
+0 & 0 & \phantom{-}0
+\end{bmatrix}.
+\]
+
+We can already see that two of the variables are free, and only the first one is a pivot. So put $x_2 = 1$ and $x_3 = 0$ to obtain one special solution:
+
+\[
+\mathbf{x}_{s}^{1} = \begin{bmatrix}
+-2\\
+\phantom{-}1\\
+\phantom{-}0\\
+\end{bmatrix}.
+\]
+
+For us to get the other special solution, set $x_2 = 0$ and $x_3 = 0$, and we get:
+
+\[
+\mathbf{x}_{s}^{2} = \begin{bmatrix}
+3\\
+0\\
+1\\
+\end{bmatrix}.
+\]
+
+So a basis for the plane (indeed for the nullspace of that 3 by 3 matrix) is $\{\mathbf{x}_{s}^{1}, \mathbf{x}_{s}^{2}\}$.
+\end{document}

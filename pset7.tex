@@ -1,0 +1,128 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{setspace}
+
+\onehalfspacing
+
+\title{Problem Set 7:  Solving Ax = 0: Pivot Variables,  Special Solutions}
+\author{Tiago C. Botelho}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Problem 7.1:}
+
+\noindent \textbf{(a)} We'll describe each step in finding the reduced row echelon form of $A$.
+
+\noindent \textbf{Step 1:} Subtract two of row 1 from row 3 to get:
+
+\[
+\begin{bmatrix}
+1 & \phantom{-}5 & \phantom{-}7 & \phantom{-}9\\
+0 & \phantom{-}4 & \phantom{-}1 & \phantom{-}7\\
+0 & -12 & -3 & -21\\
+\end{bmatrix}.
+\]
+
+\noindent \textbf{Step 2:} Subtract three times row 2 from row 3 to get:
+
+\[
+\begin{bmatrix}
+1 & \phantom{-}5 & \phantom{-}7 & \phantom{-}9\\
+0 & \phantom{-}4 & \phantom{-}1 & \phantom{-}7\\
+0 & \phantom{-}0 & \phantom{-}0 & \phantom{-}0\\
+\end{bmatrix}
+\]
+
+\noindent \textbf{Step 3:} Divide row 2 by 4 to get a 1 in the pivot position:
+
+\[
+\begin{bmatrix}
+1 & \phantom{-}5 & \phantom{-}7 & \phantom{-}9\\
+0 & \phantom{-}1 & \phantom{-}\frac{1}{4} & \phantom{-}\frac{7}{4}\\
+0 & \phantom{-}0 & \phantom{-}0 & \phantom{-}0\\
+\end{bmatrix}.
+\]
+
+\noindent \textbf{Step 4:} Subtract five times row 2 from row 1, and then we'll be done:
+
+\[
+R = \begin{bmatrix}
+1 & \phantom{-}0 & \phantom{-}\frac{23}{4} & \phantom{-}\frac{1}{4}\\
+0 & \phantom{-}1 & \phantom{-}\frac{1}{4} & \phantom{-}\frac{7}{4}\\
+0 & \phantom{-}0 & \phantom{-}0 & \phantom{-}0\\
+\end{bmatrix}.
+\]
+
+\textbf{(b)} The rank of $A$ is just the number of nonzero entries in pivot positions in $R$, so $\text{rank}(A) = 2$.
+
+\textbf{(c)} In order to find the special solutions of $A\mathbf{x = 0}$, we employ the algorithm seen in class, \textit{i.e.}, we alternately set the free variables to be 1 and 0, and then solve for the pivot variables. First, we choose $x_3 = 1$ and $x_4 = 0$; then
+
+\[
+x_1 + \frac{23}{4}x_3 + \frac{1}{4}x_4 = 0
+\]
+
+returns $x_1 = -\frac{23}{4}$, and
+
+\[
+x_2 + \frac{1}{4}x_3 + \frac{7}{4}x_4 = 0
+\]
+
+returns $x_2 = -\frac{1}{4}$. So one special solution is:
+
+\[
+x_{s}^{1} = \left(-\frac{23}{4}, -\frac{1}{4}, 1, 0\right).
+\]
+
+Now, let's choose $x_3 = 0$ and $x_4 = 1$. Then:
+
+\[
+x_1 + \frac{23}{4}x_3 + \frac{1}{4}x_4 = 0
+\]
+
+returns $x_1 = -\frac{1}{4}$, and
+
+\[
+x_2 + \frac{1}{4}x_3 + \frac{7}{4}x_4 = 0
+\]
+
+returns $x_2 = -\frac{7}{4}$. So the other special solution is:
+
+\[
+x_{s}^{2} = \left(-\frac{1}{4}, -\frac{7}{4}, 0, 1\right).
+\]
+
+The point of the exercise was to apply the algorithm we learned in class, but we can end it by noting that the special solutions were already pretty clear from the $F$ block in $R$, namely:
+
+\[
+F = \begin{bmatrix}
+\frac{23}{4} & \frac{1}{4}\\
+\frac{1}{4} & \frac{7}{4}
+\end{bmatrix}
+\]
+
+would already give us the special solutions, so long as we took $-F$ and used it as values for pivots. The nullspace of $A$ is just the set of all linear combinations of the special solutions we found.
+
+\noindent \textbf{Problem 7.2:} Well, $A_2$ is relatively easy, we can just take
+
+\[
+A_2 = \begin{bmatrix}
+0 & 0\\
+0 & 0\\
+\end{bmatrix},
+\]
+
+which would indeed yield $\text{rank}(A_2B) = 0$ for any $2 \times 2$ matrix $B$, and in particular, for the $B$ in the problem set. $A_1$ is just a tad bit harder, but not by much: all we need to do is force linear dependence between the colums (rows) of $B$. But $B$ already has linearly dependent columns! So we can just take:
+
+\[
+A_1 = \begin{bmatrix}
+1 & 0\\
+0 & 1\\
+\end{bmatrix}
+\]
+
+and it will follow that $\text{rank}(A_1B) = 1$, as desired.
+\end{document}

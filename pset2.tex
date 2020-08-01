@@ -1,0 +1,123 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{setspace}
+
+\onehalfspacing
+
+\title{Problem Set 1: Elimination with Matrices}
+\author{Tiago C. Botelho}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Problem 2.1:} We should subtract three times the first equation from the second equation in the first step of (Gaussian) elimination. Below, we express the system in matrix form:
+
+\[
+\begin{bmatrix}
+2 & 3\\
+6 & 15\\
+\end{bmatrix}
+\begin{bmatrix}
+x\\
+y\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+5\\
+12
+\end{bmatrix}.
+\]
+
+Now, let us apply elimination. The coefficient matrix becomes:
+
+\[
+\begin{bmatrix}
+2 & 3\\
+0 & 6\\
+\end{bmatrix},
+\]
+
+so the first and second pivots are 2, and 6, respectively.
+
+We need to apply the same matrix to the right hand side, which gives us:
+
+\[
+\begin{bmatrix}
+\phantom{-}5\\
+-3\\
+\end{bmatrix}.
+\]
+
+Now, for the final step, we use back substitution, just a fancy name from going bottom to top; we have $6y = -3$, therefore $y = -0.5$; and substituting this in the first equation, we have $2x -1.5 = 5$, \textit{i.e.}, $x = 3.25$.
+
+\noindent \textbf{Problem 2.2:} Want to find a triangular matrix that transforms the Pascal matrix:
+
+\[
+\begin{bmatrix}
+1 & 0 & 0 & 0\\
+1 & 1 & 0 & 0\\
+1 & 2 & 1 & 0\\
+1 & 3 & 3 & 1\\
+\end{bmatrix}
+\]
+
+into the simpler, (also) Pascal matrix:
+
+\[
+\begin{bmatrix}
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & 1 & 1 & 0\\
+0 & 1 & 2 & 1\\
+\end{bmatrix}.
+\]
+
+Ok, let's think of some elementary matrices that'll do the job when multiplied together. First, need to subtract the first line from all other lines, so we consider:
+
+\[
+E = \begin{bmatrix}
+\phantom{-}1 & 0 & 0 & 0\\
+-1 & 1 & 0 & 0\\
+-1 & 0 & 1 & 0\\
+-1 & 0 & 0 & 1\\
+\end{bmatrix}.
+\]
+
+Next up, need to wipe out the 2 in position (3, 2), and actually make it a 1, which we can easily do with row 2; and we can also use row 2 to make entry (4, 2) a 2 instead of a 3. We use:
+
+\[
+F = \begin{bmatrix}
+1 & \phantom{-}0 & 0 & 0\\
+0 & \phantom{-}1 & 0 & 0\\
+0 & -1 & 1 & 0\\
+0 & -1 & 0 & 1\\
+\end{bmatrix}.
+\]
+
+One more operation left: we have to subtract what's left of row 3 from what's left of row 4. Easy! We use:
+
+\[
+G = \begin{bmatrix}
+1 & 0 & \phantom{-}0 & 0\\
+0 & 1 & \phantom{-}0 & 0\\
+0 & 0 & \phantom{-}1 & 0\\
+0 & 0 & -1 & 1\\
+\end{bmatrix}
+\]
+
+Finally, we compose (multiply together) these matrices to obtain:
+
+\[
+T = GFE = \begin{bmatrix}
+\phantom{-}1 & \phantom{-}0 & \phantom{-}0 & 0\\
+-1 & \phantom{-}1 & \phantom{-}0 & \phantom{-}0\\
+\phantom{-}0 & -1 & \phantom{-}1 & \phantom{-}0\\
+\phantom{-}0 & \phantom{-}0 & -1 & \phantom{-}1
+\end{bmatrix}.
+\]
+
+The final calculation was done with the aid of \texttt{numpy}, a Python module for scientific computing.
+\end{document}

@@ -1,0 +1,220 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{setspace}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\onehalfspacing
+
+\title{Problem Set 3: Multiplication and Inverses}
+\author{Tiago C. Botelho}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Problem 3.1:} First things first, we need to compute $AB$ and $AC$. We'll compute $AB$ using the column approach, \textit{i.e.}, first compute:
+
+\[
+\begin{bmatrix}
+1 & 2\\
+3 & 4\\
+\end{bmatrix}
+\begin{bmatrix}
+1\\
+0\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+1\\
+3\\
+\end{bmatrix}
+= \text{Column 1 of } AB.
+\]
+
+And then, compute:
+
+\[
+\begin{bmatrix}
+1 & 2\\
+3 & 4\\
+\end{bmatrix}
+\begin{bmatrix}
+0\\
+0\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+0\\
+0\\
+\end{bmatrix}
+= \text{Column 2 of } AB.
+\]
+
+Thus:
+
+\[
+AB = \begin{bmatrix}
+1 & 0\\
+3 & 0\\
+\end{bmatrix}.
+\]
+
+We now compute $AC$ using the row approach, \textit{i.e.}, first compute:
+
+\[
+\begin{bmatrix}
+1 & 2\\
+\end{bmatrix}
+\begin{bmatrix}
+0 & 0\\
+5 & 6\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+10 & 12\\
+\end{bmatrix}
+= \text{Row 1 of AC}.
+\]
+
+And then, compute:
+
+\[
+\begin{bmatrix}
+3 & 4\\
+\end{bmatrix}
+\begin{bmatrix}
+0 & 0\\
+5 & 6\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+20 & 24\\
+\end{bmatrix}
+= \text{Row 2 of AC}.
+\]
+
+Thus:
+
+\[
+AC = \begin{bmatrix}
+10 & 12\\
+20 & 24\\
+\end{bmatrix}.
+\]
+
+Adding these two matrices together, we get:
+
+\[
+AB + AC = \begin{bmatrix}
+11 & 12\\
+23 & 24\\
+\end{bmatrix}.
+\]
+
+Now, let us compute the value of $A(B + C)$ in two steps. First, we add $B$ and $C$ together:
+
+\[
+B + C = \begin{bmatrix}
+1 & 0\\
+5 & 6\\
+\end{bmatrix}.
+\]
+
+Step two can be subdivided in another two steps. We'll adopt the column times row approach to multiplying $A$ and $B + C$ together. First, we compute:
+
+\[
+\begin{bmatrix}
+1\\
+3\\
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0\\
+3 & 0\\
+\end{bmatrix}.
+\]
+
+Next up, we need to compute:
+
+\[
+\begin{bmatrix}
+2\\
+4\\
+\end{bmatrix}
+\begin{bmatrix}
+5 & 6\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+10 & 12\\
+20 & 24\\
+\end{bmatrix}.
+\]
+
+Finally, we tally (add) up the results to get:
+
+\[
+A(B + C) = \begin{bmatrix}
+1 & 0\\
+3 & 0\\
+\end{bmatrix}
++
+\begin{bmatrix}
+10 & 12\\
+20 & 24\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+11 & 12\\
+23 & 24\\
+\end{bmatrix}.
+\]
+
+As we had plenty of reasons to believe, this matrix coincides with $AB + AC$, and this is no coincidence. Indeed, by taking the time to use arbitrary real numbers instead of the ones we chose, one can show that matrix multiplication is distributive with respect to addition.
+
+\noindent \textbf{Problem 3.2:} All we need to do is apply some of the elementary matrices we saw before. We won't explicity display them, instead choosing to describe what their action is. First step is to subtract $a$ times row 2 from row 1.
+
+\[
+\begin{bmatrix}[ccc|ccc]
+1 & a & b & 1 & 0 & 0\\
+0 & 1 & c & 0 & 1 & 0\\
+0 & 0 & 1 & 0 & 0 & 1\\
+\end{bmatrix}
+\to
+\begin{bmatrix}[ccc|ccc]
+1 & 0 & b - ac & 1 & -a & 0\\
+0 & 1 & c & 0 & \phantom{-}1 & 0\\
+0 & 0 & 1 & 0 & \phantom{-}0 & 1\\
+\end{bmatrix}.
+\]
+
+Next step is bipartite. Subtract $c$ times row 3 from row 2; and subtract $b - ac$ times row 3 from row 1.
+
+\[
+\begin{bmatrix}[ccc|ccc]
+1 & 0 & b - ac & 1 & -a & 0\\
+0 & 1 & c & 0 & \phantom{-}1 & 0\\
+0 & 0 & 1 & 0 & \phantom{-}0 & 1\\
+\end{bmatrix}
+\to
+\begin{bmatrix}[ccc|ccc]
+1 & 0 & 0 & 1 & -a & - (b - ac)\\
+0 & 1 & 0 & 0 & \phantom{-}1 & -c\\
+0 & 0 & 1 & 0 & \phantom{-}0 & \phantom{-}1\\
+\end{bmatrix}.
+\]
+
+So with Gauss-Jordan elimination, we have found the upper triangular inverse of $U$, namely, $U^{-1}$.
+
+\end{document}

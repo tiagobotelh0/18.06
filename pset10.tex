@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{setspace}
+
+\onehalfspacing
+
+\title{Problem Set 10: The Four Fundamental Subspaces}
+\author{Tiago C. Botelho}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Problem 10.1:}
+
+\noindent \textbf{(a)} We already know that the rank of a matrix cannot exceed either the number of rows or the number of columns, so clearly $r \leq \min\{m, n\}$. The real question is, is $r$ strictly less than either one of those?
+
+Well, by assumption, there is at least one vector $\mathbf{b} \in \mathbb{R}^{m}$ such that $A\mathbf{x = b}$ has \textit{no} solution, so we know that the columns of $A$ do \textit{not} span all of $\mathbb{R}^{m}$, thus $r < m$.
+
+\noindent \textbf{(b)} Because $r$ is strictly less than $m$, we know that the dimension of $\mathcal{N}(A^{T})$ is positive, so at least one vector (other than the zero vector) exists that satisfies $A^{T}\mathbf{y = 0}$.
+
+\noindent \textbf{Problem 10.2} Again, because $A^{T}\mathbf{y}$ is a linear combination of the columns of $A^{T}$, which in turn are the rows of $A$. So $A^{T}\mathbf{y = d}$ is solvable when $\mathbf{d}$ is in the rowspace of $A$, which is just the column space of $A^{T}$, \textit{i.e.}, when $\mathbf{d} \in \mathcal{C}(A^{T})$. The solution is unique whenever the nullspace of $A^{T}$ (\textit{i.e.}, the left nullspace of $A$) contains only the zero vector. 
+\end{document}

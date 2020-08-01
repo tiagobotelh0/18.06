@@ -1,0 +1,155 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{setspace}
+
+\onehalfspacing
+
+\title{Problem Set 5: Transposes, Permutations, Vector Spaces}
+\author{Tiago C. Botelho}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Problem 5.1:}
+
+\noindent \textbf{(a)} Permutation matrices swap rows in the matrix they're multiplying. So basically, we're looking for a permutation matrix $P$ that takes the matrix back to where it was after three rounds of swapping (but $P = I_3$ is \textit{not} allowed).
+
+\[
+\begin{bmatrix}
+0 & 1 & 0\\
+0 & 0 & 1\\
+1 & 0 & 0\\
+\end{bmatrix}.
+\]
+
+This matrix pushes each row down by 1, and row 3 ends up where row 1 is. If we iterate this process, we get back to the where we originally were every three times. Checking:
+
+\[
+P^{2} = \begin{bmatrix}
+0 & 1 & 0\\
+0 & 0 & 1\\
+1 & 0 & 0\\
+\end{bmatrix}
+\begin{bmatrix}
+0 & 1 & 0\\
+0 & 0 & 1\\
+1 & 0 & 0\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & 0 & 1\\
+1 & 0 & 0\\
+0 & 1 & 0\\
+\end{bmatrix}.
+\]
+
+And finally:
+
+\[
+P^{3} = \begin{bmatrix}
+0 & 1 & 0\\
+0 & 0 & 1\\
+1 & 0 & 0\\
+\end{bmatrix}
+\begin{bmatrix}
+0 & 0 & 1\\
+1 & 0 & 0\\
+0 & 1 & 0\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1\\
+\end{bmatrix} = I.
+\]
+
+Ta-da! A 3 by 3 permutation matrix that is not the identity, and cycles after three iterations.
+
+\noindent \textbf{(b)} The goal is now to find a 4 by 4 permutation matrix $\widehat{P}$ that \textit{doesn't} cycle after four iterations, \textit{i.e.}, such that $\widehat{P}^{4} \neq I_4$. Consider:
+
+\[
+\widehat{P} = \begin{bmatrix}
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0\\
+1 & 0 & 0 & 0\\
+0 & 0 & 0 & 1\\
+\end{bmatrix}.
+\]
+
+With the assistance of \texttt{numpy}, we can verify that $\widehat{P}^{4} = \widehat{P} \neq I_4$.
+
+\noindent \textbf{Problem 5.2:}
+
+\noindent \textbf{(a)} If $A$ is four by four and symmetric (\textit{i.e.}, $A^{T} = A$), then we can independently choose the elements along the diagonal (we have four of those); and the elements below the diagonal (or above, but not both), of which there are 6. So we can choose 10 out of 16 independently.
+
+\noindent \textbf{(b)} If $A$ is skew-symmetric, \textit{i.e.}, if $A^{T} = -A$, we have to be a little more careful. Because the elements of the diagonal remain unchanged after transposing, they all must be zero, so we cannot choose those. Finally, we can choose the elements below the diagonal (or above, but not both), and the elements above will just be a negative reflection of the 6 of them; in total, we can choose 6 elements independently.
+
+\noindent \textbf{Problem 5.3:}
+
+\noindent \textbf{(a)} Let's just take two symmetric matrices and check. Two by two should be enough.
+
+\[
+\begin{bmatrix}
+d_1 & a\\
+a & d_2\\
+\end{bmatrix}
++
+\begin{bmatrix}
+d_3 & b\\
+b & d_4\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+d_1 + d_3 & a + b\\
+a + b & d_2 + d_4
+\end{bmatrix}.
+\]
+
+It's pretty obvious that this would work for $n \times n$ matrices of arbitrary size, even if we multiplied both matrices by scalars. Since the matrix with all zeros is clearly symmetric, we conclude that this (the set of symmetric matrices) is indeed a subspace.
+
+\noindent \textbf{(b)} Same procedure.
+
+\[
+\begin{bmatrix}
+0 & -a\\
+a & \phantom{-}0
+\end{bmatrix}
++
+\begin{bmatrix}
+0 & -b\\
+b & \phantom{-}0
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & - (a + b)\\
+a + b & \phantom{-}0\\
+\end{bmatrix}.
+\]
+
+Works for the matrix with all zero entries, so, it's a subspace.
+
+\noindent \textbf{(c)} Consider:
+
+\[
+\begin{bmatrix}
+1 & 5\\
+2 & 1\\
+\end{bmatrix}
++
+\begin{bmatrix}
+1 & 5\\
+8 & 1\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+2 & 10\\
+10 & 2\\
+\end{bmatrix}.
+\]
+
+So it can't be a subspace, because we took two matrices that are not symmetric and ended up with one that is symmetric.
+\end{document}

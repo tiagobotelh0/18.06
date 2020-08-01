@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{setspace}
+
+\onehalfspacing
+
+\title{Problem Set 6: Column Space and Nullspace}
+\author{Tiago C. Botelho}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Problem 6.1:}
+
+\noindent \textbf{(a)} Define $\mathbf{S + T} \equiv \{s + t: s \in \mathbf{S}, t \in \mathbf{T}\}$, and let $u \in \mathbf{S + T}$ and $v \in \mathbf{S + T}$. By definition, there exist $s_u \in \mathbf{S}$ and $t_u \in \mathbf{T}$ such that $u = s_u + t_u$, and there exist $s_v \in \mathbf{S}$ and $t_v \in \mathbf{T}$ such that $v = s_v + t_v$. Then $u + v = (s_u + s_v) + (t_u + t_v)$. Because $\mathbf{S}$ is by assumption a subspace of $\mathbf{V}$, the vector $s_u + s_v$ is an element of $\mathbf{S}$. Because $\mathbf{T}$ is by assumption a subspace of $\mathbf{V}$, the vector $t_u + t_v$ is an element of $\mathbf{T}$. So $u + v$ can be written as the sum of an element of $\mathbf{S}$ and an element of $\mathbf{T}$, therefore $u + v \in \mathbf{S + T}$.
+
+Now, let $u \in \mathbf{S + T}$ and consider $\alpha \in \mathbb{R}$. We are implicitly assuming, of course, that $\mathbf{V}$ is a real vector space. Then by definition, there exist $s_u \in \mathbf{S}$ and $t_u \in \mathbf{T}$ such that $u = s_u + t_u$. Since $\alpha u = \alpha (s_u + t_u) = \alpha s_u + \alpha t_u$, it is clear that $\alpha u \in \mathbf{S + T}$, because $\alpha s_u \in \mathbf{S}$ (because $\mathbf{S}$ is by assumption a subspace of $\mathbf{V}$) and $\alpha t_u \in \mathbf{T}$ (because $\mathbf{T}$ is by assumption a subspace of $\mathbf{V}$). This concludes the proof that $\mathbf{S + T}$, as defined above, is indeed a subspace of $\mathbf{V}$.
+
+\noindent \textbf{(b)} Note the obvious difference:
+
+\[
+\mathbf{S + T} = \{s + t: s \in \mathbf{S}, t \in \mathbf{T}\},
+\]
+
+whereas
+
+\[
+\mathbf{S} \cup \mathbf{T} = \{u: u \in \mathbf{S} \text{ or } u \in \mathbf{T}\}.
+\]
+
+The important thing to remark upon is that any vector in $\mathbf{S} \cup \mathbf{T}$ is in either $\mathbf{S}$ or $\mathbf{T}$ (or both, obviously), but never outside of either of these subspaces. On the other hand, it is perfectly ppossible, and indeed ``likely'' in a way that almost every element of $\mathbf{S + T}$ is neither on $\mathbf{S}$ nor on $\mathbf{T}$. This settles the general case.
+
+Now, if these subspaces are lines immersed in $\mathbb{R}^{m}$, then their union is the set of all elements on top of each line, whereas their sum not only contains the union (indeed, take either $s = 0$ or $t = 0$ to see that), but also contains every linear combination with unit coefficients.
+
+When we say that $\mathbf{S} \cup \mathbf{T}$ spans the sum $\mathbf{S + T}$, we're basically saying that any vector in $\mathbf{S + T}$ can be written as a linear combination of vectors in $\mathbf{S} \cup \mathbf{T}$; indeed, any vector in the sum of these subspaces is the sum of two vectors in the union.
+
+\noindent \textbf{Problem 6.2:} Since this problem asks us to complete a statement, we'll just write it down in full. The plane described by $x - 3y - z = 12$ is parallel to the plane described by $x - 3y - z = 0$ (there's a typo in the original problem set). One particular point on this plane (the first one) is $(12, 0, 0)$. All points that lie on top of this plane have the form:
+
+\[
+\begin{bmatrix}
+x\\
+y\\
+z\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+12\\
+0\\
+0\\
+\end{bmatrix}
++
+y\begin{bmatrix}
+3\\
+1\\
+0\\
+\end{bmatrix}
++
+z\begin{bmatrix}
+1\\
+0\\
+1\\
+\end{bmatrix}.
+\]
+
+\noindent \textbf{Problem 6.3:} A vector $x$ belongs to $\mathcal{N}(C)$ if, and only if, it belogs to the intersection $\mathcal{N}(A) \cap \mathcal{N}(B)$. Indeed, it is clearly the case that $Cx = 0$ if, and only if
+
+\[
+\begin{bmatrix}
+Ax\\
+Bx\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+0\\
+0\\
+\end{bmatrix}.
+\]
+\end{document}

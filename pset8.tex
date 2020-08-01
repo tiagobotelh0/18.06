@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{setspace}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\onehalfspacing
+
+\title{Problem Set 8: Solving Ax = b: Row Reduced Form R}
+\author{Tiago C. Botelho}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Problem 8.1:}
+
+\noindent \textbf{(a)} The complete solution is \textit{a particular} linear combination of $\mathbf{x}_p$ and $\mathbf{x}_n$; indeed, $\mathbf{x}_c = \mathbf{x}_p + \alpha \mathbf{x}_n$, for any $\alpha \in \mathbb{R}$. That is why the statement is false.
+
+\noindent \textbf{(b)} One way of finding a particular solution is to set the free variables equal to 0, and then solve for the pivot variables. There is nothing stopping us, however, from setting the free variables to any value different from 0, and finding a distinct particular solution.
+
+\noindent \textbf{(c)} The statement is false because the nullspace \textit{always} has at least one solution, namely, $\mathbf{0}$, the zero vector.
+
+\noindent \textbf{Problem 8.2:} We apply the Gauss-Jordan elimination algorithm first for $[U | \mathbf{0}]$. Two steps: divide row 2 by 4, and then subtract 3 of row 2 from row 1. We get:
+
+
+\[
+[R | \mathbf{0}] = \begin{bmatrix}[ccc|c]
+1 & 2 & 0 & 0\\
+0 & 0 & 1 & 0\\
+\end{bmatrix}.
+\]
+
+Now, we solve it. For the particular solution, we set $x_2 = 1$. We have two equations to look at:
+
+\[
+x_3 = 0
+\]
+
+obviously returns $x_3 = 0$. And
+
+\[
+x_1 + 2x_2 = 0
+\]
+
+returns $x_1 = -2$. So a special solution is $(-2, 1, 0)$. Since the nullspace is a subspace of $\mathbb{R}^{3}$, we know that the set of solutions of $R\mathbf{x = 0}$ is the set of vectors $\alpha (-2, 1, 0)$, where $\alpha \in \mathbb{R}$, \textit{i.e.}, the set of multiples of our special solution.
+
+We now set out to reduce $[U|\mathbf{c}]$. Apply the same two steps, but now the right side of the augmented matrix changes as well:
+
+\[
+[R|\mathbf{d}] = \begin{bmatrix}[ccc|c]
+1 & 2 & 0 & -1\\
+0 & 0 & 1 & \phantom{-}2\\
+\end{bmatrix}.
+\]
+
+To solve it, we can first find a particular solution setting $x_2 = 0$ (since $x_2$ is a free variable). That gives us $x_1 = -1$ and $x_3 = 2$. So a particular solution is $\mathbf{x}_p = (-1, 0, 2)$. And we already know we have a whole bunch of nullspace solutions. So the set of complete solutions is the set of all vectors $(-1, 0, 2) + \alpha (-2, 1, 0)$, where $\alpha \in \mathbb{R}$.
+
+\noindent \textbf{Problem 8.3} It's true that $A = C$. Suppose for the sake of contradiction that $A \neq C$. In particular, $A$ and $C$ have different columns, so for some vector $\mathbf{u}$ (of right shape) we have $A\mathbf{u} \neq C\mathbf{u}$; but if we put $\mathbf{b} = A\mathbf{u}$, then we conclude that $A\mathbf{x}$ and $C\mathbf{x}$ have different complete solutions for at least one right hand side $\mathbf{b}$, a contradiction. Therefore $A = C$.
+\end{document}

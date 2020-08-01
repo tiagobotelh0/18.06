@@ -1,0 +1,254 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\usepackage{setspace}
+
+\onehalfspacing
+
+\title{Exam 1}
+\author{Tiago C. Botelho}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Exercise 1.}
+
+\noindent \textbf{(a)} $A$ is $m$ by $n$; for us to be able to multiply $A$ by $x$, we need $x$ to have $n$ rows; and since the result is an element of $\mathbb{R}^{3}$, we know that $m = 3$.
+
+Because the system of linear equations:
+
+\[
+A\mathbf{x} = \begin{bmatrix}
+1\\
+1\\
+1\\
+\end{bmatrix}
+\]
+
+has no solutions, we know that the columns of $A$ do \textit{not} span all of $\mathbb{R}^{3}$, so $n$ is at most 2. On the other hand, the system
+
+\[
+A\mathbf{x} = \begin{bmatrix}
+0\\
+1\\
+0\\
+\end{bmatrix}
+\]
+
+has a unique solution, which means that at least one of the columns of $A$ is independent of the others, meaning $n$ is at least 1. Thus $n \in \{1, 2\}$.
+
+Finally, because $\text{rank }A \leq \min\{m, n\}$, it follows that $\text{rank }A \leq 2.$ Of course, the fact that the second system has a unique solution means that $r = n$, so $r \in \{1, 2\}$.
+
+\noindent \textbf{(b)} Well, the fact that 
+\[
+A\mathbf{x} = \begin{bmatrix}
+0\\
+1\\
+0\\
+\end{bmatrix}
+\]
+
+has a \textit{unique} solution, we know that $\mathcal{N}(A) = \{0\}$ (otherwise we could add multiples of a vector in the basis of $\mathcal{N}(A)$ to obtain infinitely many other solutions). Therefore the only solution to $A\mathbf{x = 0}$ is the zero vector itself.
+
+\noindent \textbf{(c)} We can take:
+
+\[
+A = \begin{bmatrix}
+0\\
+1\\
+0\\
+\end{bmatrix}.
+\]
+
+And it satisfies all of our criteria: first, it has 3 rows and $n = 1$ column(s). The first system will have no solution because this vector spans a line in $\mathbb{R}^{3}$ that does not contain $(1, 1, 1)$. The second system has a unique solution with $x = 1$.
+
+\noindent \textbf{Exercise 2.}
+
+\noindent \textbf{(a)} If $A$ is reduced to $I_3$ when we apply elimination, then $E_{23}E_{31}E_{21}A = I_3$, which means that $E_{23}E_{31}E_{21} = A^{-1}$. Therefore:
+
+\[
+A^{-1}
+=
+\begin{bmatrix}
+1 & 0 & \phantom{-}0\\
+0 & 1 & -1\\
+0 & 0 & \phantom{-}1\\
+\end{bmatrix}
+\begin{bmatrix}
+\phantom{-}1 & 0 & 0\\
+\phantom{-}0 & 1 & 0\\
+-3 & 0 & 0\\
+\end{bmatrix}
+\begin{bmatrix}
+\phantom{-}1 & 0 & 0\\
+-4 & 1 & 0\\
+\phantom{-}0 & 0 & 1\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+\phantom{-}1 & 0 & \phantom{-}0\\
+-1  & 1 & -1\\
+-3  & 0  & \phantom{-}1\\
+\end{bmatrix}.
+\]
+
+\noindent \textbf{(b)} Well, if $E_{23}E_{31}E_{21} = A^{-1}$, then clearly $(E_{23}E_{31}E_{21})^{-1} = (A^{-1})^{-1} = A$. So the matrix we're really after is $E_{21}^{-1}E_{31}^{-1}E_{23}^{-1}$. Each of these matrices does the opposite row operation of their inverse, so:
+
+\[
+A =
+\begin{bmatrix}
+1 & 0 & 0\\
+4 & 1 & 0\\
+0 & 0 & 1\\
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+3 & 0 & 0\\
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 1\\
+0 & 0 & 1\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 & 0\\
+4 & 1 & 1\\
+3 & 0 & 0\\
+\end{bmatrix}
+\]
+
+\noindent \textbf{(b)} The lower triangular in $A$ does the opposite of the first and second operations all at once, but not the third (which is going further than just simple elimination). So:
+
+\[
+L =
+\begin{bmatrix}
+1 & 0 & 0\\
+4 & 1 & 0\\
+3 & 0 & 0\\
+\end{bmatrix}.
+\]
+
+Where we understand that:
+
+\[
+U =
+\begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 1\\
+0 & 0 & 1\\
+\end{bmatrix}.
+\]
+
+\noindent \textbf{Exercise 3.} For this exercise, a useful thing to do is to row reduce the augmented matrix $A$ with $(1, c, 0)$ tacked onto it.
+
+\noindent \textbf{Step 1:} Subtract 3 (row 1) from row 2; we get:
+
+\[
+\begin{bmatrix}[cccc|c]
+1 & 1 & \phantom{-}2 & \phantom{-}4 & 1\\
+0 & (c-3) & -4 & -4 & (c-3)\\
+0 & 0 & \phantom{-}2 & \phantom{-}2 & 0\\
+\end{bmatrix}.
+\]
+
+\noindent \textbf{Step 2:} Divide row 3 by 2, and then add 4 (row 3) to row 2; we get:
+
+\[
+\begin{bmatrix}[cccc|c]
+1 & 1 & 2 & 4 & 1\\
+0 & (c-3) & 0 & 0 & (c-3)\\
+0 & 0 & 1 & 1 & 0\\
+\end{bmatrix}.
+\]
+
+Since we do not know whether $c$ is equal to 3 or not, we need to proceed carefully.
+
+\noindent \textbf{Step 3:} We assume that $c = 3$. That being the case, the row reduced echelon form of the augmented matrix can be obtained if we swap rows 2 and 3 and then subtract 2 (row 2) from row 1:
+
+\[
+\begin{bmatrix}[cccc|c]
+1 & 1 & 0 & 2 & 1\\
+0 & 0 & 1 & 1 & 0\\
+0 & 0 & 0 & 0 & 0\\
+\end{bmatrix}.
+\]
+
+\noindent \textbf{Step 3$^{\prime}$:} We assume that $c \neq 3$. That being the case, the row reduced echelon form of the augmented matrix can be obtained if we divide row 2 by $(c-3) \neq 0$, and then subtract (row 2) from row 1 as well as 2 row(3) from row 1; we get:
+
+\[
+\begin{bmatrix}[cccc|c]
+1 & 0 & 0 & 2 & 0\\
+0 & 1 & 0 & 0 & 1\\
+0 & 0 & 1 & 1 & 0\\
+\end{bmatrix}.
+\]
+
+\noindent \textbf{(a)} We split the answer into two separate cases:
+
+If $c = 3$, then columns 1 and 3 have pivots in them, so a basis for $\mathcal{C}(A)$ is the set $\{(1, 3, 0), (2, 2, 2)\}$.
+
+If $c \neq 3$, then columns 1, 2, and 3 have pivots in them, so a basis for $\mathcal{C}(A)$ is the set $\{(1, 3, 0), (1, c, 0), (2, 2, 2)\}$.
+
+\noindent \textbf{(b)} A basis for the nullspace of $A$ can be determined if we find the special solutions to $A\mathbf{x = 0}$. Again, two possibilities arise:
+
+If $c = 3$, we have two free variables, namely, $x_2$ and $x_4$. First, set $x_2 = 1$ and $x_4 = 0$ to find the first special solution:
+
+\[
+\begin{bmatrix}
+-1\\
+\phantom{-}1\\
+\phantom{-}0\\
+\phantom{-}0\\
+\end{bmatrix};
+\]
+
+and then, set $x_2 = 0$ and $x_4 = 1$ to find the second special solution:
+
+\[
+\begin{bmatrix}
+-2\\
+\phantom{-}0\\
+-1\\
+\phantom{-}1\\
+\end{bmatrix}.
+\]
+
+Therefore, a basis for $\mathcal{N}(A)$ is the set: $\{(-1, 1, 0, 0), (-2, 0, -1, 1)\}$.
+
+On the other hand, if $c \neq 3$, we have a single free variable, namely, $x_4$. So only one special solution is needed. Set $x_4 = 1$ to obtain:
+
+\[
+\begin{bmatrix}
+-2\\
+\phantom{-}0\\
+-1\\
+\phantom{-}1\\
+\end{bmatrix}.
+\]
+
+So in this case, a basis for for $\mathcal{N}(A)$ is the singleton: $\{(-2, 0, -1, 1)\}$.
+
+\noindent \textbf{(c)} Easy. A particular solution is $(0, 1, 0, 0)$. This is just the vector that picks out column 2, \textit{i.e.}, exactly the right hand side!
+
+So a complete solution can be one of two things. If $c = 3$, a complete solution is $(0, 1, 0, 0) + \alpha (-1, 1, 0, 0) + \alpha^{\prime} (-2, 0, -1, 1)$, where $\alpha \in \mathbb{R}$ and $\alpha^{\prime} \in \mathbb{R}$. On the other hand, if $c \neq 3$, a complete solution is $(0, 1, 0, 0) + \alpha (-2, 0, -1, 1)$, where $\alpha \in \mathbb{R}$.
+
+\noindent \textbf{Exercise 4.}
+
+\noindent \textbf{(a)} If $A$ is 3 by 5, then $\text{dim }\mathcal{N}(A)$ is bounded above by 5 (for a vector to be in the nullspace, it must have 5 components); and bounded below by $2$ (think of it as 5 variables and 3 equations). What we're saying is $\text{dim }\mathcal{N}(A) \in \{2, 3, 4, 5\}$.
+
+\noindent \textbf{(b)} We have three pivots, and they lie on columns 1, 4, and 5, so the column space is spanned by columns 1, 4, and 5. Column 2 is four times column 1; and column 3 is just the zero vector of $\mathbb{R}^{3}$.
+
+\noindent \textbf{(c)} Well, for invertible matrices, $R = I_3$; otherwise, for singular matrices, $R$ might have nonzero entries above the diagonal. We can combine these two facts to conclude that all possible row reduced echelon forms span the subspace of all upper triangular matrices.
+\end{document}
