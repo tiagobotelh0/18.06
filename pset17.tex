@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{setspace}
+
+\onehalfspacing
+
+\title{Problem Set 17: Orthogonal Matrices and Gram-Schmidt}
+\author{Tiago C. Botelho}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Problem 17.1:} Assume for the sake of contradiction that $Q\mathbf{x = 0}$ for some vector $\mathbf{x \neq 0}$. Because $Q\mathbf{x}$ is a linear combination of the columns of $Q$, this is equivalent to saying that we can find $x_1, ..., x_n \in \mathbb{R}$, \textit{not all zero}, such that:
+
+\[
+x_1 \mathbf{q}_1 + ... + x_n \mathbf{q}_n = \mathbf{0}.
+\]
+
+But this would imply that the columns of $Q$ are linearly \textit{de}pendent, a contradiction (because they are by assumption orthonormal). Therefore, it must be the case that $Q\mathbf{x = 0} \iff \mathbf{x = 0}$.
+
+\noindent \textbf{Problem 17.2:} Basically, want to make the matrix
+
+\[
+M = \begin{bmatrix}
+\phantom{-}1 & \phantom{-}0 & \phantom{-}0\\
+-1 & \phantom{-}1 & \phantom{-}0\\
+\phantom{-}0 & -1 & \phantom{-}1\\
+\phantom{-}0 & \phantom{-}0 & -1\\
+\end{bmatrix}
+\]
+
+orthogonal. We can apply the Gram-Schmidt algorithm to do so!
+
+\begin{itemize}
+    \item \textbf{Step 1:} Put $\mathbf{A} = \frac{\mathbf{a}}{||\mathbf{a}||} = \frac{(1, -1, 0, 0)}{\sqrt{2}} = \left(\frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}}, 0, 0\right)$;
+    
+    \item \textbf{Step 2:} Project $\mathbf{b}$ onto $\mathbf{A}$ and keep the error vector, which is by design orthogonal to $\mathbf{A}$:
+    
+    \[
+    \mathbf{b} - \text{proj}_{\mathbf{A}} \mathbf{b} = \mathbf{b} - \frac{\mathbf{A}^{T}\mathbf{b}}{\mathbf{A}^{T}\mathbf{A}}\mathbf{A} = (0, 1, -1, 0) - \left(-\frac{1}{2}, \frac{1}{2}, 0, 0\right) = \left(\frac{1}{2}, \frac{1}{2}, -1, 0\right).
+    \]
+    
+    \item \textbf{Step 3:} $\mathbf{B}$ will just be the error vector divided by its norm (we're looking for ortho\textit{normal} vectors, after all). So put:
+    
+    \[
+    \mathbf{B} = \frac{\mathbf{b - \text{proj}_{\mathbf{A}}\mathbf{b}}}{||\mathbf{b - \text{proj}_{\mathbf{A}}\mathbf{b}}||} = \frac{\left(\frac{1}{2}, \frac{1}{2}, 0, 0\right)}{||\left(\frac{1}{2}, \frac{1}{2}, 0, 0\right)||} = \left(\frac{\sqrt{2}}{2}, \frac{\sqrt{2}}{2}, 0, 0\right).
+    \]
+    
+    \item \textbf{Step 4:} The third vector needs to be orthogonal to both $\mathbf{A}$ \textit{and} $\mathbf{B}$; so we're gonna keep the error vector from projecting $\mathbf{c}$ on both $\mathbf{A}$ and $\mathbf{B}$. We put:
+    
+    \[
+    \mathbf{c} - \text{proj}_{\mathbf{A, B}} \mathbf{c} = \mathbf{c} - \frac{\mathbf{A}^{T}\mathbf{c}}{\mathbf{A}^{T}\mathbf{A}}\mathbf{A} - \frac{\mathbf{B}^{T}\mathbf{c}}{\mathbf{B}^{T}\mathbf{B}}\mathbf{B}
+    \]
+    
+    No boring arithmetic is necessary in this particular case; the smart way to go about this is to notice that $\mathbf{c}$ has \textit{no} components along the $\mathbf{A}$ or $\mathbf{B}$ directions!
+    
+    \[
+    \mathbf{c} - \text{proj}_{\mathbf{A, B}} \mathbf{c} = \mathbf{c}.
+    \]
+    
+    \noindent \textbf{Step 5:} All that's left is dividing $\mathbf{c}$ by its norm to get:
+    
+    \[
+    \mathbf{C} = \frac{\mathbf{c}}{||\mathbf{c}||} = \frac{(0, 0, 1, -1)}{||(0, 0, 1, -1)||} = \left(0, 0, \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\right)
+    \]
+    
+    OK, so $\{\mathbf{A}, \mathbf{B}, \mathbf{C}\}$ is an orthonormal basis for the column space of $M$.
+    
+    Finally, because $\mathbf{A}$, $\mathbf{B}$, and $\mathbf{C}$ are three linearly independent vectors that are orthogonal to $(1, 1, 1, 1)$, they form a basis for the nullspace of $(1, 1, 1, 1)$, which we know must have three dimensions (it is the orthogonal complement of the row space). The same logic applies to the original $\mathbf{a}$, $\mathbf{b}$, and $\mathbf{c}$ vectors.
+\end{itemize}
+
+
+\end{document}

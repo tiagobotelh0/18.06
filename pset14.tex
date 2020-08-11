@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{setspace}
+
+\onehalfspacing
+
+\title{Problem Set 14: Orthogonal Vectors and Subspaces}
+\author{Tiago C. Botelho}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Problem 14.1} Want to find the multipliers of Fredholm's Alternative for:
+
+\[
+\begin{cases}
+x_1 - x_2 = 1\\
+x_2 - x_3 = 1\\
+x_1 - x_3 = 1\\
+\end{cases}.
+\]
+
+Coefficient matrix is:
+
+\[
+\begin{bmatrix}
+1 & -1 & \phantom{-}0\\
+0 & \phantom{-}1 & -1\\
+1 & \phantom{-}0 & -1\\
+\end{bmatrix}.
+\]
+
+The third row is the sum of the first two rows. So we can take $y_1 = y_2 = 1$ and $y_3 = -1$. The system becomes:
+
+\[
+\begin{cases}
+x_1 - x_2 = 1\\
+x_2 - x_3 = 1\\
+x_3 - x_1 = -1\\
+\end{cases}.
+\]
+
+Adding up the left and right hand sides, we get:
+
+\[
+(x_1 - x_2) + (x_2 - x_3) + (x_3 - x_1) = 1 + 1 -1,
+\]
+
+and rearranging, we obtain:
+
+\[
+0 = 1,
+\]
+
+as desired.
+
+\noindent \textbf{Problem 14.2}
+
+\noindent \textbf{(a)} Well, we already know that $\mathcal{C}(A)$ and $\mathcal{N}(A^{T})$ are orthogonal complements, therefore their dimensions must add up to 2; and if we want, say, $\{\mathbf{r}\}$ to be a basis for $\mathcal{C}(A)$ and $\{\mathbf{n}\}$ to be a basis for $\mathcal{N}(A^{T})$, then we also need these two vectors to be orthogonal to each other, \textit{i.e.}, it must be the case that $\mathbf{r}^{T} \cdot \mathbf{n} = \mathbf{0}$.
+
+By analogy, we know that the dimension of $\mathcal{C}(A^{T})$ and $\mathcal{N}(A)$ add up to 2. If we want $\{\mathbf{c}\}$ to be a basis for $\mathcal{C}(A^{T})$ and $\{\mathbf{l}\}$ to be a basis for $\mathcal{N}(A)$, then it must be the case that $\mathbf{c}^{T} \cdot \mathbf{l} = \mathbf{0}$.
+
+\noindent \textbf{(b)} Recall that $M\mathbf{x}$ is a linear combination of the columns of $M$ and of the rows of $\mathbf{x}$. So we can take $A = \mathbf{r} \cdot \mathbf{c}^{T}$ to obtain a matrix satisfying the desired properties.
+\end{document}

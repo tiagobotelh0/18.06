@@ -1,0 +1,105 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{setspace}
+
+\onehalfspacing
+
+\title{Problem Set 22: Diagonalization and Powers of A}
+\author{Tiago C. Botelho}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Problem 22.1:} For us to find the eigenvectors of $A$, we first need to compute its eigenvalues. In order to do that, the algorithm is a simple one: we should solve
+
+\[
+\begin{vmatrix}
+4 - \lambda & 0\\
+1 & 2 - \lambda\\
+\end{vmatrix}
+=
+0,
+\]
+
+or, equivalently, we should look at the roots of $p(\lambda) = (4-\lambda)(2-\lambda)$. Clearly, $\lambda_1 = 4$ and $\lambda_2 = 2$ are the eigenvalues we're after. Now, to find the eigenvectors, we set out to find an element in the nullspace of $A - \lambda_i I$. For $\lambda_1$, we want a vector in the nullspace of:
+
+\[
+\begin{bmatrix}
+0 & \phantom{-}0\\
+1 & -2
+\end{bmatrix},
+\]
+
+and clearly, by setting $x_2 = 1$, we obtain: $x_1 = 2$. So for $\alpha \neq 0$, any vector $\alpha(2, 1)$ is an eigenvector associated with $\lambda_1$.
+
+For $\lambda_2$, we want a vector in the nullspace of:
+
+\[
+\begin{bmatrix}
+2 & 0\\
+1 & 0\\
+\end{bmatrix}.
+\]
+
+Mentally applying elimination and then setting $x_2 = 1$, we get: $x_1 = 0$. So for any $\alpha \neq 0$, the vector $\alpha(0, 1)$ is an eigenvector associated with $\lambda_2$.
+
+Now, because $\lambda_1 \neq \lambda_2$, we know that $A$ is invertible. Consider $S$ the matrix with the eigenvectors of $A$ as its columns, and $\Lambda$ the diagonal matrix with eigenvalues as entries. Then we can write $A = S \Lambda S^{-1}$. So $A^{-1} = (S\Lambda S^{-1})^{-1} = S\Lambda^{-1} S^{-1}$. So whatever $S$ diagonalizes $A$ will diagonalize $A^{-1}$ too.
+
+\noindent \textbf{Problem 22.2:} Ok, since $A$ is a transitions probability matrix (a Markov matrix), one of its eigenvalues is $\lambda_1 = 1$. To find the other one, we could just recall that the trace is equal to the sum of the eigenvalues. So $\lambda_2 = 0.7 - 1 = -0.3$. OK, now we set out to find the eigenvectors. For $\lambda_1$, we need to find a vector in the nullspace of:
+
+\[
+\begin{bmatrix}
+-0.4 & \phantom{-}0.9\\
+\phantom{-}0.4 & -0.9\\
+\end{bmatrix}.
+\]
+
+By mentally performing elimination and setting $x_2 = 1$, we get: $x_1 = 2.25$.
+
+Now, for $\lambda_2$, we need to find a vector in the nullspace of:
+
+\[
+\begin{bmatrix}
+0.9 & 0.9\\
+0.4 & 0.4\\
+\end{bmatrix}.
+\]
+
+Again, we mentally perform elimination, put $x_2 = 1$, and get: $x_1 = -1$, so that for any $\alpha \neq 0$, the vector $\alpha(-1, 1)$ is an eigenvector for $\lambda_2$. Thus:
+
+\[
+A = S\Lambda S^{-1} = \begin{bmatrix}
+2.25 & -1\\
+1 & \phantom{-}1
+\end{bmatrix}
+\begin{bmatrix}
+1 & \\
+  & -0.3\\
+\end{bmatrix}
+\begin{bmatrix}
+\phantom{-}0.308 & 0.308\\
+-0.308 & 0.692\\
+\end{bmatrix}.
+\]
+
+As $k$ grows without bounds, $\Lambda^{k}$ converges to
+
+\[
+\begin{bmatrix}
+1 & \\
+  & 0\\
+\end{bmatrix},
+\]
+
+and the steady state Markov equilibrium vector is any column of:
+
+\[
+\begin{bmatrix}
+0.692 & 0.692\\
+0.308 & 0.308\\
+\end{bmatrix}.
+\]
+\end{document}

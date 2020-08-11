@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{setspace}
+
+\onehalfspacing
+
+\title{Problem Set 18: Properties of Determinants}
+\author{Tiago C. Botelho}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Problem 18.1:} If the entries on each row of $A$ add up to zero, then we have $\sum_{j = 1}^{n} a_{ij} = 0$, for each $i \in \{1, 2, ..., n\}$. First, note that elimination preserves this property. Subtract $\ell$ times row 1 from row 2, where $\ell$ has been chosen so as to make $a_{21} - \ell a_{11} = 0$. Then row 2 becomes 
+
+\[
+(0, a_{22} - \ell a_{12}, a_{23} - \ell a_{13}, ..., a_{2n} - \ell a_{1n}).
+\]
+
+Its components add up to:
+
+\[
+\sum_{j=2}^{n} a_{2j} - \ell \sum_{j=1}^{n} a_{1j} = -a_{21} -\ell \cdot (-a_{11}) = -a_{21} + a_{21} = 0.
+\]
+
+One can easily extend this to arbitrary differences of rows. Now, assume for a contradiction that $\det A \neq 0$. Then elimination produces an upper triangular matrix, and in particular the last row should still satisfy the property $\sum_{j=1}^{n} a_{nj} = 0$, except after elimination, this is just $a_{nn} = 0$, a contradiction, for a matrix cannot be invertible and have a zero in a pivot position. Thus $\det A = 0$.
+
+If the rows of $A$ add up to 1, then the rows of $A - I$ add up to 0, so by the previous discussion, we know that $\det (A - I) = 0$. Doesn't mean $\det A = 1$, no. Consider:
+
+\[
+A = \begin{bmatrix}
+0 & 1\\
+1 & 0\\
+\end{bmatrix}.
+\]
+
+Then:
+
+\[
+A - I = \begin{bmatrix}
+0 & 0\\
+0 & 0\\
+\end{bmatrix}.
+\]
+
+We have $\det A = -1$.
+
+\noindent \textbf{Problem 18.2:} Time to practice the use of properties for determinants. We can use elimination on $A$ to get:
+
+\[
+\begin{bmatrix}
+1 & a & a^{2}\\
+0 & b - a & b^{2} - a^{2}\\
+0 & c - a & c^{2} - a^{2}\\
+\end{bmatrix},
+\]
+
+and then:
+
+\[
+\begin{bmatrix}
+1 & a & a^{2}\\
+0 & b - a & b^{2} - a^{2}\\
+0 & 0 & (c - a)(c + a) - (c - a)(b + a)\\
+\end{bmatrix},
+\]
+
+and a bit of algebra tells us that $(c - a)(c + a) - (c - a)(b + a) = (c - a)(c - b)$. We already know that elimination won't change the determinant, so we can just take the determinant of $A$'s upper triangular form. That'll be the product of the entries on the diagonal, which is just:
+
+\[
+\det A = 1 \cdot (b - a) \cdot (c - a) \cdot (c - b).
+\]
+
+It's important to note that this doesn't fail even if elimination were to produce a row of zeroes, in which case at least one of the differences $(b - a)$, $(c - a)$ or $(c - b)$ would be 0, and all would be fine.
+\end{document}

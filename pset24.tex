@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{setspace}
+
+\onehalfspacing
+
+\title{Problem Set 24: Markov Matrices; Fourier Series}
+\author{Tiago C. Botelho}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Problem 24.1:}
+
+\noindent \textbf{(a)} The eigenvalues add up to the trace, so $\lambda_1 + \lambda_2 = 2$. And their product is equal to the determinant, so $\lambda_1\lambda_2 = 1 - b^{2}$. Well, let's put $b = 2$, so $\lambda_1\lambda_2 = -3$. From here onwards, the choice is obvious: put $\lambda_1 = -1$ and $\lambda_2 = 3$. These two eigenvalues satisfy the properties above. So our matrix is:
+
+\[
+\begin{bmatrix}
+1 & 2\\
+2 & 1\\
+\end{bmatrix}.
+\]
+
+\noindent \textbf{(b)} None of the entries in the pivot position could be 0, otherwise the matrix would be singular, and one of its eigenvalues would be $0$, so the other one would have to be $2$. From this, we know that the matrix can be put in its echelon form with a full set of pivots, and that its determinant would be the product of the pivots. Since the determinant is also the product of the eigenvalues and the first pivot (1) is positive, the second pivot has to be negative for one of the eigenvalues to be negative.
+
+\noindent \textbf{(c)} For an even stupider reason: if it did, their sum couldn't be $2 > 0$.
+
+\noindent \textbf{Problem 24.2:} $A$ is a 3 by 3 matrix whose rows can be exchanged to obtain the identity matrix. So it $A$ is a permutation matrix. It is invertible, because its determinant is not 0 (we can swap rows 1 and 3, and the determinant will be $-\det I = -1 \neq 0$). It's orthogonal, because (column $i)^{T}$(column j) = 0, for each $i \neq j$ and $= 1$ when $i = j$. It's Markov, because each column adds up to 1. It's not a projection, because $A^{2} \neq I$. And it's diagonalizable because it's symmetric.
+
+$B$ is not invertible because it does not have full rank (indeed, columns 2 and 3 are multiples of column 1). It's not orthogonal because (column $1)^{T}$(column 1) = $\frac{1}{9}(1 + 1 + 1) = \frac{1}{3} \neq 1.$ It's diagonalizable because it's symmetric. It's not a permutation because each row has more than one nonzero entry. It's not a projection because $B^{2} \neq I$. It's Markov because the entries on each column add up to 1.
+
+For $A$, only $QR, S\Lambda S^{-1}$ and $Q\Lambda Q^{-1}$ are possible. For $B$, only $LU, S\Lambda S^{-1}$ and $Q\Lambda Q^{-1}$ are possible.
+
+\noindent \textbf{Problem 24.3:} We can put:
+
+\[
+A = \begin{bmatrix}
+0.7 & 0.1 & 0.2\\
+0.1 & 0.6 & 0.3\\
+0.2 & 0.3 & 0.5\\
+\end{bmatrix}.
+\]
+
+We already know that one of the eigenvalues -- say, $\lambda_1$ -- is 1. The other ones are all inferior to 1 in absolute value, so the steady state eigenvector is in the nullspace of:
+
+\[
+\begin{bmatrix}
+-0.3 & \phantom{-}0.1 & \phantom{-}0.2\\
+\phantom{-}0.1 & -0.4 & \phantom{-}0.3\\
+\phantom{-}0.2 & \phantom{-}0.3 & -0.5\\
+\end{bmatrix}.
+\]
+
+Since (column 1) = $-$(column 2 + column 3), we get $\mathbf{x} = (1, 1, 1)$ as the steady state eigenvector. If $A$ is symmetric and Markov, then its rows will also add up to 1, so clearly $\mathbf{x = 1}$ must be an eigenvector associated with the unit eigenvalue.
+
+\end{document}

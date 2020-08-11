@@ -1,0 +1,216 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{setspace}
+
+\onehalfspacing
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+
+\title{Problem Set 16: Projection Matrices and and Least Squares}
+\author{Tiago C. Botelho}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Problem 16.1:} The equations we're looking for are:
+
+\[
+\begin{cases}
+C - D = 7\\
+C + D = 7\\
+C + 2D = 21\\
+\end{cases}.
+\]
+
+For us to find the least squares solution, we need to project $(7, 7, 21)$ onto the column space of
+
+\[
+A = \begin{bmatrix}
+1 & -1\\
+1 & \phantom{-}1\\
+1 & \phantom{-}2\\
+\end{bmatrix}.
+\]
+
+We know that each column of $A$ needs to be orthogonal to the approximation error $\mathbf{e = b} - A\widehat{\mathbf{x}}$. So $A^{T}(\mathbf{b} - A\widehat{\mathbf{x}}) = \mathbf{0}$ characterizes our least squares solution. We can rearrange to obtain the normal equations: $A^{T}A\widehat{\mathbf{x}} = A^{T}\mathbf{b}$. With the assistance of \texttt{numpy}, these reduce to:
+
+\[
+\begin{bmatrix}
+3 & 2\\
+2 & 6\\
+\end{bmatrix}
+\begin{bmatrix}
+\widehat{C}\\
+\widehat{D}\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+35\\
+42\\
+\end{bmatrix}.
+\]
+
+From here onwards, we can just apply elimination. Coefficient matrix becomes:
+
+\[
+\begin{bmatrix}
+3 & 2\\
+0 & \frac{14}{3}\\
+\end{bmatrix},
+\]
+
+whereas right hand side becomes
+
+\[
+\begin{bmatrix}
+35\\
+\frac{56}{3}\\
+\end{bmatrix}.
+\]
+
+Now, we do back-substitution. First, we find that $\widehat{D} = 4$. And therefore $\widehat{C} = 9$. Much to our dismay, we meet TikZ again.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = left,
+    xlabel = $x$,
+    ylabel = {$y$},
+]
+%Below the red parabola is defined
+%Here the blue parabloa is defined
+\addplot [
+    domain=-15:15, 
+    samples=100, 
+    color=blue,
+    ]
+    {9 + 4*x};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\noindent \textbf{Problem 16.2:} Projection is just:
+
+\[
+\mathbf{p} = A\widehat{\mathbf{x}} = \begin{bmatrix}
+1 & -1\\
+1 & \phantom{-}1\\
+1 & \phantom{-}2\\
+\end{bmatrix}
+\begin{bmatrix}
+9\\
+4\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+5\\
+13\\
+17\\
+\end{bmatrix}.
+\]
+
+We know that the error vector is just the difference $\mathbf{b} - A\widehat{\mathbf{x}}$. So:
+
+\[
+\mathbf{e} = \begin{bmatrix}
+7\\
+7\\
+21\\
+\end{bmatrix}
+-
+\begin{bmatrix}
+5\\
+13\\
+17\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+\phantom{-}2\\
+-6\\
+\phantom{-}4\\
+\end{bmatrix}.
+\]
+
+The projection matrix is $P = A(A^{T}A)^{-1}A^{T}$. The error is by construction orthogonal to each element of the column space of $A$, so it is also an element of the nullspace of $A^{T}$! This, in turn, implies that $A^{T}\mathbf{e = 0}$, and therefore $P\mathbf{e = 0}$.
+
+\noindent \textbf{Problem 16.3:} Ok, now we're basically switching our right hand sides to be the errors. Need to solve $A^{T}A\widehat{\mathbf{x}} = A^{T}\mathbf{e}$. Since $\mathbf{e}$ is in the nullspace of $A^{T}$, and $A^{T}A$ is a nice, square, invertible matrix, it follows that $\widehat{\mathbf{x}}$ is the zero vector! So clearly, for any matrix, and in particular for our matrix $A$, the projection is just $\mathbf{p = 0}$. What's happening is $\mathbf{b}$ (which we're calling $\mathbf{e}$) is perpendicular each vector in the column space of $A$.
+
+\noindent \textbf{Problem 16.4:} Ok, again, need to solve: $A^{T}A\widehat{\mathbf{x}} = A^{T}\mathbf{b}$, except now the right hand side is $\mathbf{b} = (5, 13, 17)$. But we can write
+
+\[
+\mathbf{b} = \begin{bmatrix}
+1 & -1\\
+1 & \phantom{-}1\\
+1 & \phantom{-}2\\
+\end{bmatrix}
+\begin{bmatrix}
+9\\
+4\\
+\end{bmatrix},
+\]
+
+\textit{i.e.}, $\mathbf{b}$ is just a linear combination of the columns of $A$! So the closest line is given by multiples of $\mathbf{b}$. The error vector is the zero vector, because $\mathbf{b}$ has no components outside of $\mathcal{C}(A)$;
+
+\noindent \textbf{Problem 16.5:} The error vector is an element of the left nullspace of $A$. The projection is the part of $\mathbf{b}$ that can be written as a linear combination of the columns of $A$, so $\mathbf{p}$ is an element of the column space of $A$. Recall that $\mathbf{p} = A\widehat{\mathbf{x}}$; well, because $\mathbf{p} \in \mathcal{C}(A)$, and because of the way matrices act on vectors, we know that $\widehat{\mathbf{x}}$ is in the row space of $A$. Finally, since $A$ has two linearly independent columns, we know that no linear combination other than $\mathbf{0}$ can map to $\mathbf{0}$, so $\mathcal{N}(A) = \{\mathbf{0}\}$.
+
+\noindent \textbf{Problem 16.6}: Ok, now want to solve the five equations:
+
+\[
+\begin{cases}
+C -2D = 4\\
+C -D = 2\\
+C = -1\\
+C + D = 0\\
+C + 2D = 0\\
+\end{cases}.
+\]
+
+Ok, coefficient matrix is:
+
+\[
+\begin{bmatrix}
+1 & -2\\
+1 & -1\\
+1 & \phantom{-}0\\
+1 & \phantom{-}1\\
+1 & \phantom{-}2\\
+\end{bmatrix},
+\]
+
+and the RHS is:
+
+\[
+\begin{bmatrix}
+\phantom{-}4\\
+\phantom{-}2\\
+-1\\
+\phantom{-}0\\
+\phantom{-}0\\
+\end{bmatrix}.
+\]
+
+We use \texttt{numpy} to compute the relevant matrices.
+
+\[
+A^{T}A = \begin{bmatrix}
+5 & 0\\
+0 & 10\\
+\end{bmatrix};
+\]
+
+and
+
+\[
+A^{T}\mathbf{b} = \begin{bmatrix}
+\phantom{-}5\\
+-10\\
+\end{bmatrix}.
+\]
+
+The solution is staring us right in the eye! We have $10\widehat{D} = -10 \implies \widehat{D} = -1$. And simultaneously $5\widehat{C} = 5 \implies \widehat{C} = 1$. So the best line is just $1 - t$.
+\end{document}

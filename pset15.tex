@@ -1,0 +1,61 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{setspace}
+
+\onehalfspacing
+
+\title{Problem Set 15: Projections onto Subspaces}
+\author{Tiago C. Botelho}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Problem 15.1:} The problem tells us that:
+
+\[
+A = \begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1\\
+0 & 0 & 0\\
+\end{bmatrix}.
+\]
+
+$\mathcal{C}(A)$, the column space of $A$, is just the set of vectors spanned by $(1, 0, 0, 0)$, $(0, 1, 0, 0)$, and $(0, 0, 1, 0)$, since all three columns are linearly independent. So if we project $\mathbf{b}$ onto $\mathcal{C}(A)$, we're losing all the data we had in the fourth dimension, \textit{i.e.}, the projection is just $(1, 2, 3, 0)$. We can thus think of the projection matrix as:
+
+\[
+\begin{bmatrix}
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 0\\
+\end{bmatrix},
+\]
+
+which is 4 by 4.
+
+\noindent \textbf{Problem 15.2} Assuming $P^{2} = P$, let's expand the form we're interested in. We have:
+
+\begin{align*}
+(I - P)^{2} &= (I - P)(I - P)\\
+&= I^{2} - PI - IP + P^{2}\\
+&= I - P - P + P\\
+&= I - P.
+\end{align*}
+
+Note that $I - P$ is the matrix:
+
+\[
+\begin{bmatrix}
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 1\\
+\end{bmatrix},
+\]
+
+so it's projecting onto the orthogonal complement of the column space of $A$, \textit{i.e.}, it's projecting onto the \textbf{left nullspace} of $A$.
+\end{document}

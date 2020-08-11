@@ -1,0 +1,162 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{setspace}
+
+\onehalfspacing
+
+\title{Problem Set 19: Determinant Formulas and Cofactors}
+\author{Tiago C. Botelho}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Problem 19.1:} We can perform a bunch of row exchanges to get the identity matrix. But we have to be precise about how much is a bunch in this case:
+
+\[
+A = \begin{bmatrix}
+0 & 0 & 0 & 1\\
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0\\
+\end{bmatrix}
+\to
+\begin{bmatrix}
+1 & 0 & 0 & 0\\
+0 & 0 & 0 & 1\\
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0\\
+\end{bmatrix}
+\to
+\begin{bmatrix}
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & 0 & 0 & 1\\
+0 & 0 & 1 & 0\\
+\end{bmatrix}
+\to
+\begin{bmatrix}
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1\\
+\end{bmatrix}
+= I.
+\]
+
+OK! Apparently a bunch means 3, an \textit{odd} number of row swaps. This means that the sign of $\det A$ is the opposite of the sign of $\det I$. But when we were defining the properties a determinant must have, one of our building blocks was $\det I = 1$. Since all we did to obtain the identity matrix was an odd number of row exchanges, we get: $\det A = -1$. We prefer this method because it requires a lot less thinking.
+
+\noindent \textbf{Problem 19.2:} Ok, let's use rule 3, which is easier than cofactors. Rule 3 says determinants are linear in each row. So:
+
+\[
+\begin{vmatrix}
+1 & 1 & 1 & 1\\
+1 & 2 & 3 & 4\\
+1 & 3 & 6 & 10\\
+1 & 4 & 10 & 20\\
+\end{vmatrix}
+=
+20 \begin{vmatrix}
+1 & 1 & 1\\
+1 & 2 & 3\\
+1 & 3 & 6\\
+\end{vmatrix}
+-10 \begin{vmatrix}
+1 & 1 & 1\\
+1 & 2 & 4\\
+1 & 3 & 10\\
+\end{vmatrix}
++4 \begin{vmatrix}
+1 & 1 & 1\\
+1 & 3 & 4\\
+1 & 6 & 10\\
+\end{vmatrix}
+-\begin{vmatrix}
+1 & 1 & 1\\
+2 & 3 & 4\\
+3 & 6 & 10\\
+\end{vmatrix},
+\]
+
+whereas:
+
+\[
+\begin{vmatrix}
+1 & 1 & 1 & 1\\
+1 & 2 & 3 & 4\\
+1 & 3 & 6 & 10\\
+1 & 4 & 10 & 19\\
+\end{vmatrix}
+=
+19 \begin{vmatrix}
+1 & 1 & 1\\
+1 & 2 & 3\\
+1 & 3 & 6\\
+\end{vmatrix}
+-10 \begin{vmatrix}
+1 & 1 & 1\\
+1 & 2 & 4\\
+1 & 3 & 10\\
+\end{vmatrix}
++4 \begin{vmatrix}
+1 & 1 & 1\\
+1 & 3 & 4\\
+1 & 6 & 10\\
+\end{vmatrix}
+-\begin{vmatrix}
+1 & 1 & 1\\
+2 & 3 & 4\\
+3 & 6 & 10\\
+\end{vmatrix}.
+\]
+
+We can subtract the second expression from the first one to obtain:
+
+\[
+1
+-
+\begin{vmatrix}
+1 & 1 & 1 & 1\\
+1 & 2 & 3 & 4\\
+1 & 3 & 6 & 10\\
+1 & 4 & 10 & 19\\
+\end{vmatrix}
+=
+\begin{vmatrix}
+1 & 1 & 1\\
+1 & 2 & 3\\
+1 & 3 & 6\\
+\end{vmatrix}.
+\]
+
+Elimination on the right hand side produces an upper triangular matrix without changing the determinant:
+
+\[
+\begin{vmatrix}
+1 & 1 & 1\\
+0 & 1 & 2\\
+0 & 0 & 1\\
+\end{vmatrix}
+= 1,
+\]
+
+where we know that this right hand side must equal to 1, for the determinant of upper triangular matrices is just the product of the entries on its diagonal.
+
+But then:
+
+\[
+\begin{vmatrix}
+1 & 1 & 1 & 1\\
+1 & 2 & 3 & 4\\
+1 & 3 & 6 & 10\\
+1 & 4 & 10 & 19\\
+\end{vmatrix}
+=
+1 - 1 = 0,
+\]
+
+as desired.
+
+\end{document}

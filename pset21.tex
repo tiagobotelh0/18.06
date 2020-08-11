@@ -1,0 +1,90 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{setspace}
+
+\onehalfspacing
+
+\title{Problem Set 21: Eigenvalues and Eigenvectors}
+\author{Tiago C. Botelho}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Problem 21.1:}  We know that $\det B = \det B^{T}$ (rule 10). From rule 9, we know that $\det (B^{T}B) = \det B^{T} \det B = (\det B)^{2}$. Since $\det B = \Pi_{i=1}^{n} \lambda_i = 0 \cdot 1 \cdot 2$, we know that $\det B = 0$. Therefore $\det(B^{T}B) = 0^{2} = 0$.
+
+Because $\det B = 0$, we know that $\text{rank }B \leq 2$. Because $B$ has two nonzero eigenvalues, we know that $\text{rank }B = 2$.
+
+It's kind of cheating, since I learned this from a previous course in linear algebra, but the eigenvalues of $A^{-1}$ are the multiplicative inverses of the eigenvalues of $A$; therefore the eigenvalues of $(B^{2} - I_3)$ are $\frac{1}{0 + 1}, \frac{1}{1 + 1}, \text{ and } \frac{1}{4 + 1}$.
+
+\noindent \textbf{Problem 21.2:} To find the eigenvalues of $A$, we solve:
+
+\[
+\det(A - \lambda I_3) = 0.
+\]
+
+This is equivalent to the polynomial equation:
+
+\[
+(1 - \lambda)(4 - \lambda)(6 - \lambda) = 0.
+\]
+
+Thus, the spectrum of $A$ is the set $\{1, 4, 6\}$.
+
+To find the eigenvalues of $B$, we solve a similar equation, except the determinant is a bit more annoying now.
+
+\[
+\det(B - \lambda I_3) = 0 \iff -\lambda \begin{vmatrix}
+2 - \lambda & \phantom{-}0\\
+0 & -\lambda\\
+\end{vmatrix}
++1\begin{vmatrix}
+0 & 2-\lambda\\
+3 & 0\\
+\end{vmatrix}
+=0.
+\]
+
+This is equivalent to the polynomial equation:
+
+\[
+-\lambda \cdot (2 - \lambda) \cdot (-\lambda) - 3 \cdot (2-\lambda) = 0.
+\]
+
+We can factor the $(2-\lambda)$ out and get:
+
+\[
+(2-\lambda)[\lambda^{2} - 3] = 0.
+\]
+
+So the spectrum of $B$ is the set $\{2, \sqrt{3}, -\sqrt{3}\}$.
+
+Finally, for $C$, we need to solve the same determinant equation:
+
+\[
+\det(C - \lambda I_3) = 0 \iff (2-\lambda)\begin{vmatrix}
+2 - \lambda & 2\\
+2 & 2 - \lambda
+\end{vmatrix}
+-2
+\begin{vmatrix}
+2 & 2\\
+2 & 2 - \lambda\\
+\end{vmatrix}
++2
+\begin{vmatrix}
+2 & 2-\lambda\\
+2 & 2\\
+\end{vmatrix}.
+\]
+
+This is equivalent to the polynomial equation:
+
+\[
+(2-\lambda)[(2-\lambda)^{2} - 4] - 2[2(2-\lambda) - 4] + 2[4 - 2(2-\lambda)] = 0.
+\]
+
+I won't bother solving this, seeing as we can use an online solver. Wolfram Alpha tells us that the spectrum will be $\{6, 0\}$.
+\end{document}
